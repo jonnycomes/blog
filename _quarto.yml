@@ -10,10 +10,12 @@ website:
       - icon: github
         href: https://github.com/jonnycomes
       - icon: linkedin
-        href: https://linkedin.com/jcomes
+        href: https://linkedin.com/in/jcomes
 format:
   html:
-    theme: united
+    theme:
+        light: united
+        dark: slate
     css: styles.css
 
 

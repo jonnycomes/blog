@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Jonny's Blog",
     "section": "",
-    "text": "Hello Title\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n\n\nmatplotlib demo\n\n\n\n\n\n\n\n\n\n\n\n\nNov 27, 2022\n\n\nBob Stuff\n\n\n\n\n\n\nNo matching items"
+    "text": "Qiskit: getting started\n\n\n\n\n\n\n\nquantum\n\n\nqiskit\n\n\n\n\n\n\n\n\n\n\n\nNov 28, 2022\n\n\nJonny Comes\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -26,5 +26,75 @@
     "title": "matplotlib demo",
     "section": "",
     "text": "For a demonstration of a line plot on a polar axis, see Figure 1.\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n\n\n\n\n\nFigure 1: A line plot on a polar axis"
+  },
+  {
+    "objectID": "posts/first-qiskit/First-qiskit.html",
+    "href": "posts/first-qiskit/First-qiskit.html",
+    "title": "Qiskit: getting started",
+    "section": "",
+    "text": "from qiskit import QuantumCircuit\n\nFirst, we create a 3-qubit quantum circuit:\n\nqc = QuantumCircuit(3)\n\nNow, let’s add some gates:\n\nqc.x(0)\nqc.h(2)\nqc.draw()\n\n     ┌───┐\nq_0: ┤ X ├\n     └───┘\nq_1: ─────\n     ┌───┐\nq_2: ┤ H ├\n     └───┘"
+  },
+  {
+    "objectID": "posts/first-qiskit/index.html",
+    "href": "posts/first-qiskit/index.html",
+    "title": "Qiskit: getting started",
+    "section": "",
+    "text": "Qiskit is an open source software development kie (SDK) for working with quantum computation. There are several excellent tutorials for getting started with qiskit, as well as loads of great documentation you can find at qiskit.org. The following walks through some of the very basics including how to create quantum circuits, simulate measurments, and work with state vectors."
+  },
+  {
+    "objectID": "posts/first-qiskit/index.html#creating-quantum-circuits",
+    "href": "posts/first-qiskit/index.html#creating-quantum-circuits",
+    "title": "Qiskit: getting started",
+    "section": "Creating quantum circuits",
+    "text": "Creating quantum circuits\n\nfrom qiskit import QuantumCircuit\n\nFirst, we create a 3-qubit quantum circuit:\n\nqc = QuantumCircuit(3)\n\nNext, we add some gates and draw the resulting circuit:\n\nqc.x(0)\nqc.h(2)\nqc.cx(0,2)\nqc.cx(1,2)\nqc.draw()\n\n     ┌───┐          \nq_0: ┤ X ├──■───────\n     └───┘  │       \nq_1: ───────┼────■──\n     ┌───┐┌─┴─┐┌─┴─┐\nq_2: ┤ H ├┤ X ├┤ X ├\n     └───┘└───┘└───┘"
+  },
+  {
+    "objectID": "posts/first-qiskit/index.html#measuring",
+    "href": "posts/first-qiskit/index.html#measuring",
+    "title": "Qiskit: getting started",
+    "section": "Measuring",
+    "text": "Measuring\nWe can simulate a measurement, but first we need to import a simulator:\n\nfrom qiskit.providers.aer import QasmSimulator\n\nsimulator = QasmSimulator()\n\nNow, to measure we use a circuit having both a quantum and classical register:\n\ncircuit = QuantumCircuit(3, 3)\n\nNow, let’s add some gates including some measuments:\n\ncircuit.h(0)\ncircuit.cx(0, 1)\ncircuit.cx(0, 2)\ncircuit.measure([0,1,2], [0,1,2])\ncircuit.draw()\n\n     ┌───┐             ┌─┐   \nq_0: ┤ H ├──■────■─────┤M├───\n     └───┘┌─┴─┐  │  ┌─┐└╥┘   \nq_1: ─────┤ X ├──┼──┤M├─╫────\n          └───┘┌─┴─┐└╥┘ ║ ┌─┐\nq_2: ──────────┤ X ├─╫──╫─┤M├\n               └───┘ ║  ║ └╥┘\nc: 3/════════════════╩══╩══╩═\n                     1  0  2 \n\n\nNext, we simulate and count the results:\n\njob = simulator.run(circuit, shots=1000)\nresult = job.result()\ncounts = result.get_counts(circuit)\nprint(counts)\n\n{'000': 506, '111': 494}\n\n\nWe can plot the results using qiskits built in visualization:\n\nfrom qiskit.visualization import plot_histogram\n\nplot_histogram(counts)"
+  },
+  {
+    "objectID": "posts/first-qiskit/index.html#measurements",
+    "href": "posts/first-qiskit/index.html#measurements",
+    "title": "Qiskit: getting started",
+    "section": "Measurements",
+    "text": "Measurements\nWe can simulate a measurement, but first we need to import a simulator:\n\nfrom qiskit.providers.aer import QasmSimulator\n\nsimulator = QasmSimulator()\n\n\nMeasure using a classical register explicitly\nOne way to measure is to use a circuit having both a quantum and classical register:\n\ncircuit = QuantumCircuit(3, 3)\n\nNow, let’s add some gates including some measuments:\n\ncircuit.h(0)\ncircuit.cx(0, 1)\ncircuit.cx(0, 2)\ncircuit.measure([0,1,2], [0,1,2])\ncircuit.draw()\n\n     ┌───┐             ┌─┐   \nq_0: ┤ H ├──■────■─────┤M├───\n     └───┘┌─┴─┐  │  ┌─┐└╥┘   \nq_1: ─────┤ X ├──┼──┤M├─╫────\n          └───┘┌─┴─┐└╥┘ ║ ┌─┐\nq_2: ──────────┤ X ├─╫──╫─┤M├\n               └───┘ ║  ║ └╥┘\nc: 3/════════════════╩══╩══╩═\n                     1  0  2 \n\n\nNext, we simulate and count the results:\n\njob = simulator.run(circuit, shots=1000)\nresult = job.result()\ncounts = result.get_counts(circuit)\nprint(counts)\n\n{'000': 496, '111': 504}\n\n\nWe can plot the results using qiskits built in visualization:\n\nfrom qiskit.visualization import plot_histogram\n\nplot_histogram(counts)\n\n\n\n\n\n\nUsing the measure_all() method\nAlternatively, if we want to measure all the qubits we can use the measure_all() method:\n\ncircuit = QuantumCircuit(3)\n\nNow, let’s add some gates including some measuments:\n\ncircuit.h(0)\ncircuit.cx(0, 1)\ncircuit.cx(0, 2)\ncircuit.measure_all()\ncircuit.draw()\n\n        ┌───┐           ░ ┌─┐      \n   q_0: ┤ H ├──■────■───░─┤M├──────\n        └───┘┌─┴─┐  │   ░ └╥┘┌─┐   \n   q_1: ─────┤ X ├──┼───░──╫─┤M├───\n             └───┘┌─┴─┐ ░  ║ └╥┘┌─┐\n   q_2: ──────────┤ X ├─░──╫──╫─┤M├\n                  └───┘ ░  ║  ║ └╥┘\nmeas: 3/═══════════════════╩══╩══╩═\n                           0  1  2 \n\n\nWe should see similar results:\n\njob = simulator.run(circuit, shots=1000)\nresult = job.result()\ncounts = result.get_counts(circuit)\nprint(counts)\n\n{'000': 483, '111': 517}\n\n\nOf course, this will only work if we want to measure all the qubits in the output state of the circuit."
+  },
+  {
+    "objectID": "posts/first-qiskit/index.html#circuit-orientation",
+    "href": "posts/first-qiskit/index.html#circuit-orientation",
+    "title": "Qiskit: getting started",
+    "section": "Circuit orientation",
+    "text": "Circuit orientation\nQiskit orients circuits so that the qubits \\(q_0, q_1,\\ldots, q_{n-1}\\) labelling the circut from top to bottom correspond to the input state \\(|q_{n-1}\\cdots q_1q_0\\rangle\\). To see this, let’s create a simple gate that maps \\(|000\\rangle\\mapsto|100\\rangle\\).\n\ncirc = QuantumCircuit(3)\ncirc.x(2)\ncirc.measure_all()\ncirc.draw()\n\n              ░ ┌─┐      \n   q_0: ──────░─┤M├──────\n              ░ └╥┘┌─┐   \n   q_1: ──────░──╫─┤M├───\n        ┌───┐ ░  ║ └╥┘┌─┐\n   q_2: ┤ X ├─░──╫──╫─┤M├\n        └───┘ ░  ║  ║ └╥┘\nmeas: 3/═════════╩══╩══╩═\n                 0  1  2 \n\n\nTo see that the circuit above does the trick, let’s measure:\n\njob = simulator.run(circ, shots=1000)\nresult = job.result()\ncounts = result.get_counts(circ)\nprint(counts)\n\n{'100': 1000}\n\n\nI prefer the flipped orientation where the top qubit in the circuit corresponds to the left qubit in the tensor product. To have qiskit draw circuits with my prefered orientation, we simply pass reverse_bits=True to the draw() method:\n\ncirc.draw(reverse_bits=True)\n\n        ┌───┐ ░       ┌─┐\n   q_2: ┤ X ├─░───────┤M├\n        └───┘ ░    ┌─┐└╥┘\n   q_1: ──────░────┤M├─╫─\n              ░ ┌─┐└╥┘ ║ \n   q_0: ──────░─┤M├─╫──╫─\n              ░ └╥┘ ║  ║ \nmeas_2: ═════════╬══╬══╩═\n                 ║  ║    \nmeas_1: ═════════╬══╩════\n                 ║       \nmeas_0: ═════════╩═══════\n                         \n\n\n\njob = simulator.run(circ, shots=1000)\nresult = job.result()\ncounts = result.get_counts(circ)\nprint(counts)\n\n{'100': 1000}"
+  },
+  {
+    "objectID": "posts/first-qiskit/index.html#state-vectors",
+    "href": "posts/first-qiskit/index.html#state-vectors",
+    "title": "Qiskit: getting started",
+    "section": "State vectors",
+    "text": "State vectors\nWe can use qiskits Statevector object work with \\(n\\)-qubit states.\n\nfrom qiskit.quantum_info import Statevector\n\nFor example, the following creates the state \\(|7\\rangle\\) for a 4-qubit register:\n\nstate = Statevector.from_int(7, 2**4)\nstate.draw('latex')\n\n\\[ |0111\\rangle\\]\n\n\nWe can run this state through a quantum circuit as in the following example:\n\nqc = QuantumCircuit(4)\nqc.h(1)\nqc.cx(0, 2)\nqc.swap(1,3)\nqc.draw(reverse_bits=True)\n\n                  \nq_3: ───────────X─\n          ┌───┐ │ \nq_2: ─────┤ X ├─┼─\n     ┌───┐└─┬─┘ │ \nq_1: ┤ H ├──┼───X─\n     └───┘  │     \nq_0: ───────■─────\n                  \n\n\n\nstate = state.evolve(qc)\nstate.draw('latex')\n\n\\[\\frac{\\sqrt{2}}{2} |0001\\rangle- \\frac{\\sqrt{2}}{2} |1001\\rangle\\]"
+  },
+  {
+    "objectID": "posts/first-qiskit/index.html#state-vectors-of-integers",
+    "href": "posts/first-qiskit/index.html#state-vectors-of-integers",
+    "title": "Qiskit: getting started",
+    "section": "State vectors of integers",
+    "text": "State vectors of integers\nWe can use qiskits Statevector object work with \\(n\\)-qubit states.\n\nfrom qiskit.quantum_info import Statevector\n\nFor example, the following creates the state \\(|7\\rangle\\) for a 4-qubit register:\n\nstate = Statevector.from_int(7, 2**4)\nstate.draw('latex')\n\n\\[ |0111\\rangle\\]\n\n\nWe can visualize the state \\(|7\\rangle\\) on a register of Bloch spheres as follows:\n\nfrom qiskit.visualization import plot_bloch_multivector\n\nplot_bloch_multivector(state)\n\n\n\n\nWe can run this state through a quantum circuit as in the following example:\n\nqc = QuantumCircuit(4)\nqc.h(1)\nqc.h(2)\nqc.cx(0, 2)\nqc.swap(1,3)\nqc.draw(reverse_bits=True)\n\n                  \nq_3: ───────────X─\n     ┌───┐┌───┐ │ \nq_2: ┤ H ├┤ X ├─┼─\n     ├───┤└─┬─┘ │ \nq_1: ┤ H ├──┼───X─\n     └───┘  │     \nq_0: ───────■─────\n                  \n\n\n\nstate = state.evolve(qc)\nstate.draw('latex')\n\n\\[- \\frac{1}{2} |0001\\rangle+\\frac{1}{2} |0101\\rangle+\\frac{1}{2} |1001\\rangle- \\frac{1}{2} |1101\\rangle\\]\n\n\nFinally, let’s look at this state using Bloch spheres:\n\nplot_bloch_multivector(state)"
+  },
+  {
+    "objectID": "posts/first-qiskit/index.html#the-bloch-sphere",
+    "href": "posts/first-qiskit/index.html#the-bloch-sphere",
+    "title": "Qiskit: getting started",
+    "section": "The Bloch sphere",
+    "text": "The Bloch sphere\n\nfrom qiskit.visualization import plot_bloch_vector\n\n\nplot_bloch_vector([1,0,0])"
+  },
+  {
+    "objectID": "posts/first-qiskit/index.html#state-vectors-and-bloch-spheres",
+    "href": "posts/first-qiskit/index.html#state-vectors-and-bloch-spheres",
+    "title": "Qiskit: getting started",
+    "section": "State vectors and Bloch spheres",
+    "text": "State vectors and Bloch spheres\nWe can use qiskits Statevector object work with \\(n\\)-qubit states.\n\nfrom qiskit.quantum_info import Statevector\n\nFor example, the following creates the state \\(|7\\rangle\\) for a 4-qubit register:\n\nstate = Statevector.from_int(7, 2**4)\nstate.draw('latex')\n\n\\[ |0111\\rangle\\]\n\n\nWe can visualize the state \\(|7\\rangle\\) on a register of Bloch spheres as follows:\n\nfrom qiskit.visualization import plot_bloch_multivector\n\nplot_bloch_multivector(state, reverse_bits=True)\n\n\n\n\nWe can run this state through a quantum circuit as in the following example:\n\nqc = QuantumCircuit(4)\nqc.h(1)\nqc.h(2)\nqc.cx(0, 2)\nqc.swap(1,3)\nqc.draw(reverse_bits=True)\n\n                  \nq_3: ───────────X─\n     ┌───┐┌───┐ │ \nq_2: ┤ H ├┤ X ├─┼─\n     ├───┤└─┬─┘ │ \nq_1: ┤ H ├──┼───X─\n     └───┘  │     \nq_0: ───────■─────\n                  \n\n\n\nstate = state.evolve(qc)\nstate.draw('latex')\n\n\\[- \\frac{1}{2} |0001\\rangle+\\frac{1}{2} |0101\\rangle+\\frac{1}{2} |1001\\rangle- \\frac{1}{2} |1101\\rangle\\]\n\n\nFinally, let’s look at this state using Bloch spheres:\n\nplot_bloch_multivector(state, reverse_bits=True)"
   }
 ]

@@ -13,7 +13,7 @@ website:
         href: https://linkedin.com/jcomes
 format:
   html:
-    theme: sketchy
+    theme: united
     css: styles.css
 
 

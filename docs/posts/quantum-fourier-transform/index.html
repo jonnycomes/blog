@@ -527,7 +527,7 @@ QFT_{n+1} = Rev_{n+1}\circ (I\otimes (Rev_n\circ QFT_n))\circ CPC_{n+1}\circ(H\o
 <h2 class="anchored" data-anchor-id="proof-that-qft-satisfies-the-recursive-formula">Proof that QFT satisfies the recursive formula</h2>
 <p>To prove the recursive formula <a href="#eq-rec-QFT">5</a> we compute the output of the recursive circuit on an arbitrary <span class="math inline">\((n+1)\)</span>-qubit representation of an integer: <span class="math inline">\(|a\rangle=|a_na_{n-1}\cdots a_0\rangle\)</span>. In doing so, it will continue to use the notation from <a href="#sec-CPC">Section&nbsp;2.1.3</a> by writing <span id="eq-aap"><span class="math display">\[
 |a\rangle=|a_n\rangle\otimes|a'\rangle.
-\tag{6}\]</span></span> Following <a href="#eq-rec-QFT">5</a>, we first apply the Hadamard gate (which is <span class="math inline">\(QFT_1\)</span>) to the first (top) qubit: <span class="math display">\[
+\tag{6}\]</span></span> Following <a href="#eq-rec-QFT">5</a>, we first apply the Hadamard gate (which is <span class="math inline">\(QFT_1\)</span>) to the left (top) qubit: <span class="math display">\[
 |a_n\rangle\otimes|a'\rangle \mapsto \dfrac{1}{\sqrt{2}}\sum_{0\leq b_0\leq 1}e^{\pi i a_n b_0}|b_0\rangle\otimes|a'\rangle.
 \]</span> Next, (according to <a href="#eq-rec-QFT">5</a>) we apply the CPC-gate to the result and use <a href="#eq-CPC">4</a> to get <span id="eq-afterCPC"><span class="math display">\[
 \dfrac{1}{\sqrt{2}}\sum_{0\leq b_0\leq 1}e^{\pi i b_0 a_n}|b_0\rangle\otimes|a'\rangle\mapsto \dfrac{1}{\sqrt{2}}\sum_{0\leq b_0\leq 1}e^{\pi i b_0 a_n}e^{\frac{\pi i b_0 a'}{2^n}}|b_0\rangle\otimes|a'\rangle.
@@ -537,7 +537,7 @@ QFT_{n+1} = Rev_{n+1}\circ (I\otimes (Rev_n\circ QFT_n))\circ CPC_{n+1}\circ(H\o
 e^{\pi i b_0 a_n}e^{\frac{\pi i b_0 a'}{2^n}}=e^{\frac{\pi i b_0(2^na_n+a')}{2^n}}=e^{\frac{\pi i b_0 a}{2^n}}
 \]</span> Thus, the output of <a href="#eq-afterCPC">7</a> can be written as <span class="math display">\[
 \dfrac{1}{\sqrt{2}}\sum_{0\leq b_0\leq 1}e^{\frac{\pi i b_0 a}{2^n}}|b_0\rangle\otimes|a'\rangle.
-\]</span> Next, (according to <a href="#eq-rec-QFT">5</a>) we apply the QFT-gate to the last (bottom) <span class="math inline">\(n\)</span> qubits using <a href="#eq-closed-QFT">1</a>: <span class="math display">\[
+\]</span> Next, (according to <a href="#eq-rec-QFT">5</a>) we apply the QFT-gate to the right (bottom) <span class="math inline">\(n\)</span> qubits using <a href="#eq-closed-QFT">1</a>: <span class="math display">\[
 \dfrac{1}{\sqrt{2}}\sum_{0\leq b_0\leq 1}e^{\frac{\pi i b_0 a}{2^n}}|b_0\rangle\otimes|a'\rangle
 \mapsto
 \dfrac{1}{\sqrt{2}}\sum_{0\leq b_0\leq 1}e^{\frac{\pi i b_0 a}{2^n}}|b_0\rangle\otimes\dfrac{1}{\sqrt{2^n}}\sum_{0\leq b'&lt;2^n}e^{\frac{2\pi i a'b'}{2^n}}|b'\rangle.

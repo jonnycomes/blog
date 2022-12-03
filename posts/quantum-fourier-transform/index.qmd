@@ -301,7 +301,7 @@ In doing so, it will continue to use the notation from @sec-CPC by writing
 $$
 |a\rangle=|a_n\rangle\otimes|a'\rangle.
 $${#eq-aap}
-Following @eq-rec-QFT, we first apply the Hadamard gate (which is $QFT_1$) to the first (top) qubit:
+Following @eq-rec-QFT, we first apply the Hadamard gate (which is $QFT_1$) to the left (top) qubit:
 $$
 |a_n\rangle\otimes|a'\rangle \mapsto \dfrac{1}{\sqrt{2}}\sum_{0\leq b_0\leq 1}e^{\pi i a_n b_0}|b_0\rangle\otimes|a'\rangle.
 $$
@@ -321,7 +321,7 @@ Thus, the output of @eq-afterCPC can be written as
 $$
 \dfrac{1}{\sqrt{2}}\sum_{0\leq b_0\leq 1}e^{\frac{\pi i b_0 a}{2^n}}|b_0\rangle\otimes|a'\rangle.
 $$
-Next, (according to @eq-rec-QFT) we apply the QFT-gate to the last (bottom) $n$ qubits using @eq-closed-QFT:
+Next, (according to @eq-rec-QFT) we apply the QFT-gate to the right (bottom) $n$ qubits using @eq-closed-QFT:
 $$
 \dfrac{1}{\sqrt{2}}\sum_{0\leq b_0\leq 1}e^{\frac{\pi i b_0 a}{2^n}}|b_0\rangle\otimes|a'\rangle
 \mapsto

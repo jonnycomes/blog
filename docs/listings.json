@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/quantum-fourier-transform/index.html",
       "/posts/first-qiskit/index.html"
     ]
   }

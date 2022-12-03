@@ -8,7 +8,7 @@ draft: false
 toc: true
 ---
 
-Qiskit is an open source software development kie (SDK) for working with quantum computation. There are several excellent tutorials for getting started with qiskit, as well as loads of great documentation you can find at [qiskit.org](https://qiskit.org). The following walks through some of the very basics including how to create quantum circuits, simulate measurments, and work with state vectors. 
+Qiskit is an open source software development kit (SDK) for working with quantum computation. There are several excellent tutorials for getting started with qiskit, as well as loads of great documentation you can find at [qiskit.org](https://qiskit.org). The following walks through some of the very basics including how to create quantum circuits, simulate measurments, and work with state vectors. 
 
 ## Creating quantum circuits
 
@@ -29,7 +29,7 @@ qc.x(0)
 qc.h(2)
 qc.cx(0,2)
 qc.cx(1,2)
-qc.draw()
+qc.draw(output='mpl')
 ```
 
 ## Measurements
@@ -57,7 +57,7 @@ circuit.h(0)
 circuit.cx(0, 1)
 circuit.cx(0, 2)
 circuit.measure([0,1,2], [0,1,2])
-circuit.draw()
+circuit.draw(output='mpl')
 ```
 
 Next, we simulate and count the results:
@@ -91,7 +91,7 @@ circuit.h(0)
 circuit.cx(0, 1)
 circuit.cx(0, 2)
 circuit.measure_all()
-circuit.draw()
+circuit.draw(output='mpl')
 ```
 
 We should see similar results:
@@ -113,7 +113,7 @@ Qiskit orients circuits so that the qubits $q_0, q_1,\ldots, q_{n-1}$ labelling 
 circ = QuantumCircuit(3)
 circ.x(2)
 circ.measure_all()
-circ.draw()
+circ.draw(output='mpl')
 ```
 To see that the circuit above does the trick, let's measure:
 ```{python}
@@ -126,7 +126,7 @@ print(counts)
 I prefer the flipped orientation where the top qubit in the circuit corresponds to the left qubit in the tensor product. To have qiskit draw circuits with my prefered orientation, we simply pass ``reverse_bits=True`` to the ``draw()`` method:
 
 ```{python}
-circ.draw(reverse_bits=True)
+circ.draw(output='mpl', reverse_bits=True)
 ```
 ```{python}
 job = simulator.run(circ, shots=1000)
@@ -162,7 +162,7 @@ qc.h(1)
 qc.h(2)
 qc.cx(0, 2)
 qc.swap(1,3)
-qc.draw(reverse_bits=True)
+qc.draw(output='mpl', reverse_bits=True)
 ```
 ```{python}
 state = state.evolve(qc)

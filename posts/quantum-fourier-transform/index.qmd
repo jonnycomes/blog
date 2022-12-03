@@ -3,6 +3,7 @@ title: "Quantum Fourier transform"
 author: "Jonny Comes"
 date: "2022-12-02"
 categories: [quantum, qiskit, QFT]
+image: "qft.png"
 jupyter: python3
 format:
     html: 

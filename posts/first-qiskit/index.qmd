@@ -3,6 +3,7 @@ title: "Qiskit: getting started"
 author: "Jonny Comes"
 date: "2022-11-28"
 categories: [quantum, qiskit]
+image: "circuit.png"
 jupyter: python3
 draft: false
 toc: true

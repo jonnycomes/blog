@@ -87,7 +87,7 @@ One of the building blocks (subcircuits) of the QFT circuit consists of a compos
 
 #### Phase gates
 
-We will write $P_\phi$ for the P-gate, which dependes on a parameter $\phi$, that maps qubits as follows 
+We will write $P_\phi$ for the P-gate, which depends on a parameter $\phi$, that maps qubits as follows 
 
 $$\begin{align*}
     |0\rangle & \mapsto |0\rangle\\
@@ -244,7 +244,7 @@ qc.swap(0,2)
 qc.draw(output='mpl', reverse_bits=True)
 ```
 
-Similarly, we can plug the QFT-circuit above into the recursive formula @eq-rec-QFT and (after expanding and simplyfying) get $QFT_4$ in terms of H, CP, and swap gates:
+Similarly, we can plug the QFT-circuit above into the recursive formula @eq-rec-QFT and (after expanding and simplifying) get $QFT_4$ in terms of H, CP, and swap gates:
 
 ```{python}
 qc = QuantumCircuit(4)
@@ -297,11 +297,11 @@ state_out.draw('latex')
 
 To prove the recursive formula @eq-rec-QFT we compute the output of the recursive circuit on 
 an arbitrary $(n+1)$-qubit representation of an integer: $|a\rangle=|a_na_{n-1}\cdots a_0\rangle$. 
-In doing so, it will coninue to use the notation from @sec-CPC by writing
+In doing so, it will continue to use the notation from @sec-CPC by writing
 $$
 |a\rangle=|a_n\rangle\otimes|a'\rangle.
 $${#eq-aap}
-Following @eq-rec-QFT, we first apply the Hardaman gate (which is $QFT_1$) to the first (top) qubit:
+Following @eq-rec-QFT, we first apply the Hadamard gate (which is $QFT_1$) to the first (top) qubit:
 $$
 |a_n\rangle\otimes|a'\rangle \mapsto \dfrac{1}{\sqrt{2}}\sum_{0\leq b_0\leq 1}e^{\pi i a_n b_0}|b_0\rangle\otimes|a'\rangle.
 $$

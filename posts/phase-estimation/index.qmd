@@ -3,6 +3,7 @@ title: "Quantum Phase Estimation"
 author: "Jonny Comes"
 date: "2022-12-14"
 categories: [quantum, qiskit, QFT, phase estimation]
+image: "phase_est.png"
 jupyter: python3
 format:
     html: 

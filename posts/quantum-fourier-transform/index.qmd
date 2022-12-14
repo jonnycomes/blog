@@ -17,7 +17,7 @@ crossref:
 
 ## The quantum Fourier transform
 
-The Fourier transform is a beautiful function with many important applications in and outside of mathematics. There is a wonderful introduction to the [Fourier transform by 3 Blue 1 Brown](https://www.youtube.com/watch?v=spUNpyF58BY) that is well worth watching. The following is a description of the quantum Fourier transform (QFT). After defining a closed formula for QFT, I will explain how to build the QFT circuit using a recursive formula. In the end, I will prove that the closed formula and recursive formula agree. All the quantum circuits in this post are created with [qiskit](https://qiskit.org). 
+The Fourier transform is a beautiful function with many important applications. There is a wonderful introduction to the [Fourier transform by 3 Blue 1 Brown](https://www.youtube.com/watch?v=spUNpyF58BY) that is well worth watching. The following is a description of the quantum Fourier transform (QFT). After defining a closed formula for QFT, I will explain how to build the QFT circuit using a recursive formula. In the end, I will prove that the closed formula and recursive formula agree. All the quantum circuits in this post are created with [qiskit](https://qiskit.org). 
 
 ```{python}
 from qiskit import QuantumCircuit
@@ -131,7 +131,7 @@ Suppose we are concerned with a $(n+1)$-qubit state space. Consider $n$ CP-gates
 
 ```{python}
 def cpc(n):
-    qc = QuantumCircuit(n, name=f'  CPC  ')
+    qc = QuantumCircuit(n, name='   CPC   ')
     for k in range(1, n):
         qc.cp(pi/(2**k), n-1, n-1-k)
     return qc
@@ -173,7 +173,7 @@ We let $Rev_n$ for the $n$-qubit gate that reverses the qubit order. For example
 
 ```{python}
 def rev(n):
-    qc = QuantumCircuit(n, name=f'  Rev  ')
+    qc = QuantumCircuit(n, name='   Rev   ')
     for i in range(n//2):
         qc.swap(i, n-i-1)
     return qc
@@ -206,7 +206,7 @@ def qft(n):
 
 qft(5).draw(output='mpl', reverse_bits=True, style={
     "displaycolor": {
-        "  Rev  ": [ # gate name
+        "   Rev   ": [ # gate name
             "#555555", # box color (grey)
             "#FFFFFF" # box text color (white)
         ],

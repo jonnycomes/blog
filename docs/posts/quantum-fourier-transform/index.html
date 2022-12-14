@@ -237,7 +237,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="the-quantum-fourier-transform" class="level2">
 <h2 class="anchored" data-anchor-id="the-quantum-fourier-transform">The quantum Fourier transform</h2>
-<p>The Fourier transform is a beautiful function with many important applications in and outside of mathematics. There is a wonderful introduction to the <a href="https://www.youtube.com/watch?v=spUNpyF58BY">Fourier transform by 3 Blue 1 Brown</a> that is well worth watching. The following is a description of the quantum Fourier transform (QFT). After defining a closed formula for QFT, I will explain how to build the QFT circuit using a recursive formula. In the end, I will prove that the closed formula and recursive formula agree. All the quantum circuits in this post are created with <a href="https://qiskit.org">qiskit</a>.</p>
+<p>The Fourier transform is a beautiful function with many important applications. There is a wonderful introduction to the <a href="https://www.youtube.com/watch?v=spUNpyF58BY">Fourier transform by 3 Blue 1 Brown</a> that is well worth watching. The following is a description of the quantum Fourier transform (QFT). After defining a closed formula for QFT, I will explain how to build the QFT circuit using a recursive formula. In the end, I will prove that the closed formula and recursive formula agree. All the quantum circuits in this post are created with <a href="https://qiskit.org">qiskit</a>.</p>
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
@@ -344,7 +344,7 @@ QFT_n|a\rangle = \dfrac{1}{\sqrt{N}}\sum_{b=0}^{N-1}e^{2\pi i a b/N}|b\rangle.
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cpc(n):</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    qc <span class="op">=</span> QuantumCircuit(n, name<span class="op">=</span><span class="ss">f'  CPC  '</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    qc <span class="op">=</span> QuantumCircuit(n, name<span class="op">=</span><span class="st">'   CPC   '</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        qc.cp(pi<span class="op">/</span>(<span class="dv">2</span><span class="op">**</span>k), n<span class="op">-</span><span class="dv">1</span>, n<span class="op">-</span><span class="dv">1</span><span class="op">-</span>k)</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> qc</span>
@@ -386,7 +386,7 @@ CPC_{n+1}:|a_n\rangle\otimes|a'\rangle \mapsto e^{\frac{\pi i a_na'}{2^n}} |a_n\
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rev(n):</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    qc <span class="op">=</span> QuantumCircuit(n, name<span class="op">=</span><span class="ss">f'  Rev  '</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    qc <span class="op">=</span> QuantumCircuit(n, name<span class="op">=</span><span class="st">'   Rev   '</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n<span class="op">//</span><span class="dv">2</span>):</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        qc.swap(i, n<span class="op">-</span>i<span class="op">-</span><span class="dv">1</span>)</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> qc</span>
@@ -422,7 +422,7 @@ QFT_{n+1} = Rev_{n+1}\circ (I\otimes (Rev_n\circ QFT_n))\circ CPC_{n+1}\circ(H\o
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>qft(<span class="dv">5</span>).draw(output<span class="op">=</span><span class="st">'mpl'</span>, reverse_bits<span class="op">=</span><span class="va">True</span>, style<span class="op">=</span>{</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"displaycolor"</span>: {</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">"  Rev  "</span>: [ <span class="co"># gate name</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">"   Rev   "</span>: [ <span class="co"># gate name</span></span>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">"#555555"</span>, <span class="co"># box color (grey)</span></span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">"#FFFFFF"</span> <span class="co"># box text color (white)</span></span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        ],</span>

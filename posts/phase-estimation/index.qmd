@@ -67,6 +67,8 @@ def qft(n):
 ```
 
 
+I first read about quantum phase estimation in [qiskit's book](https://qiskit.org/textbook/ch-algorithms/quantum-phase-estimation.html) while trying to better understand Shor's algorithm. Much of what I've written below is merely a retelling of qiskit's treatment. I plan to post about Shor's algorithm soon. 
+
 ### Controlled $U$-gates
 
 Fix a unitary matrix $U$. The controlled $U$-gate is defined by

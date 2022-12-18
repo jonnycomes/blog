@@ -285,6 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> qc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<p>I first read about quantum phase estimation in <a href="https://qiskit.org/textbook/ch-algorithms/quantum-phase-estimation.html">qiskit’s book</a> while trying to better understand Shor’s algorithm. Much of what I’ve written below is merely a retelling of qiskit’s treatment. I plan to post about Shor’s algorithm soon.</p>
 <section id="controlled-u-gates" class="level3">
 <h3 class="anchored" data-anchor-id="controlled-u-gates">Controlled <span class="math inline">\(U\)</span>-gates</h3>
 <p>Fix a unitary matrix <span class="math inline">\(U\)</span>. The controlled <span class="math inline">\(U\)</span>-gate is defined by <span class="math display">\[
@@ -319,7 +320,7 @@ CU_k:|q_{n-1}\cdots q_0\rangle\otimes|x\rangle \mapsto e^{2\pi i\theta q_k} |q_{
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>qc <span class="op">=</span> QuantumCircuit(<span class="dv">4</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>qc.append(cu, [<span class="dv">2</span>,<span class="dv">0</span>])</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>qc.draw(output<span class="op">=</span><span class="st">'mpl'</span>, reverse_bits<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="56">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <p><img src="index_files/figure-html/cell-3-output-1.png" width="167" height="286"></p>
 </div>
 </div>
@@ -361,7 +362,7 @@ CU_k:|q_{n-1}\cdots q_0\rangle\otimes|x\rangle \mapsto e^{2\pi i\theta q_k} |q_{
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        ],</span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    }})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="57">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <p><img src="index_files/figure-html/cell-4-output-1.png" width="712" height="286"></p>
 </div>
 </div>
@@ -398,7 +399,7 @@ CU_k:|q_{n-1}\cdots q_0\rangle\otimes|x\rangle \mapsto e^{2\pi i\theta q_k} |q_{
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        ],</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    }})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="58">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <p><img src="index_files/figure-html/cell-5-output-1.png" width="470" height="225"></p>
 </div>
 </div>
@@ -406,7 +407,7 @@ CU_k:|q_{n-1}\cdots q_0\rangle\otimes|x\rangle \mapsto e^{2\pi i\theta q_k} |q_{
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>in_state <span class="op">=</span> Statevector.from_int(<span class="dv">0</span>, <span class="dv">2</span><span class="op">**</span>(n<span class="op">+</span><span class="dv">1</span>)) </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>in_state.draw(<span class="st">'latex'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="59">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <p><span class="math display">\[ |000\rangle\]</span></p>
 </div>
 </div>
@@ -414,7 +415,7 @@ CU_k:|q_{n-1}\cdots q_0\rangle\otimes|x\rangle \mapsto e^{2\pi i\theta q_k} |q_{
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>out_state <span class="op">=</span> in_state.evolve(pe)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>out_state.draw(<span class="st">'latex'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="60">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <p><span class="math display">\[ |000\rangle\]</span></p>
 </div>
 </div>
@@ -424,7 +425,7 @@ CU_k:|q_{n-1}\cdots q_0\rangle\otimes|x\rangle \mapsto e^{2\pi i\theta q_k} |q_{
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>in_state <span class="op">=</span> Statevector.from_int(<span class="dv">1</span>, <span class="dv">2</span><span class="op">**</span>(n<span class="op">+</span><span class="dv">1</span>)) </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>out_state <span class="op">=</span> in_state.evolve(pe)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>out_state.draw(<span class="st">'latex'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="61">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <p><span class="math display">\[ |101\rangle\]</span></p>
 </div>
 </div>
@@ -447,7 +448,7 @@ CU_k:|q_{n-1}\cdots q_0\rangle\otimes|x\rangle \mapsto e^{2\pi i\theta q_k} |q_{
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        ],</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    }})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="62">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <p><img src="index_files/figure-html/cell-9-output-1.png" width="470" height="225"></p>
 </div>
 </div>
@@ -459,7 +460,7 @@ CU_k:|q_{n-1}\cdots q_0\rangle\otimes|x\rangle \mapsto e^{2\pi i\theta q_k} |q_{
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>out_state <span class="op">=</span> in_state.evolve(pe)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>out_state.draw(<span class="st">'latex'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="63">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <p><span class="math display">\[(0.25 + 0.603553390593 i) |001\rangle+ (0.25 - 0.603553390593 i) |011\rangle+ (\frac{1}{4} - \frac{2^{\frac{47}{191}} \cdot 3^{\frac{160}{191}} \cdot 5^{\frac{160}{573}} \cdot 7^{\frac{99}{191}} i}{21 \pi^{\frac{887}{573}}}) |101\rangle+ (\frac{1}{4} + \frac{2^{\frac{47}{191}} \cdot 3^{\frac{160}{191}} \cdot 5^{\frac{160}{573}} \cdot 7^{\frac{99}{191}} i}{21 \pi^{\frac{887}{573}}}) |111\rangle\]</span></p>
 </div>
 </div>
@@ -473,7 +474,7 @@ CU_k:|q_{n-1}\cdots q_0\rangle\otimes|x\rangle \mapsto e^{2\pi i\theta q_k} |q_{
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>probs <span class="op">=</span> [prob_dict[s] <span class="cf">for</span> s <span class="kw">in</span> states]</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span>first_states, y<span class="op">=</span>probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="64">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -495,7 +496,7 @@ CU_k:|q_{n-1}\cdots q_0\rangle\otimes|x\rangle \mapsto e^{2\pi i\theta q_k} |q_{
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        ],</span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    }})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="65">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <p><img src="index_files/figure-html/cell-12-output-1.png" width="712" height="286"></p>
 </div>
 </div>
@@ -507,7 +508,7 @@ CU_k:|q_{n-1}\cdots q_0\rangle\otimes|x\rangle \mapsto e^{2\pi i\theta q_k} |q_{
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>out_state <span class="op">=</span> in_state.evolve(pe)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>out_state.draw(<span class="st">'latex'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="66">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <p><span class="math display">\[ |0011\rangle\]</span></p>
 </div>
 </div>
@@ -526,7 +527,7 @@ CU_k:|q_{n-1}\cdots q_0\rangle\otimes|x\rangle \mapsto e^{2\pi i\theta q_k} |q_{
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>out_state <span class="op">=</span> in_state.evolve(pe)</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>out_state.draw(<span class="st">'latex'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="67">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <p><span class="math display">\[\frac{1}{4} |001\rangle+ (0.591506350946 + 0.591506350946 i) |011\rangle- \frac{\sqrt{3} i}{4} |101\rangle+ (0.158493649054 - 0.158493649054 i) |111\rangle\]</span></p>
 </div>
 </div>
@@ -540,7 +541,7 @@ CU_k:|q_{n-1}\cdots q_0\rangle\otimes|x\rangle \mapsto e^{2\pi i\theta q_k} |q_{
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>probs <span class="op">=</span> [prob_dict[s] <span class="cf">for</span> s <span class="kw">in</span> states]</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span>first_states, y<span class="op">=</span>probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="68">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -561,7 +562,7 @@ CU_k:|q_{n-1}\cdots q_0\rangle\otimes|x\rangle \mapsto e^{2\pi i\theta q_k} |q_{
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>probs <span class="op">=</span> [prob_dict[s] <span class="cf">for</span> s <span class="kw">in</span> states]</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span>first_states, y<span class="op">=</span>probs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="69">
+<div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -621,7 +622,7 @@ CU_k:|q_{n-1}\cdots q_0\rangle\otimes|x\rangle \mapsto e^{2\pi i\theta q_k} |q_{
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>u.draw(output<span class="op">=</span><span class="st">'mpl'</span>, reverse_bits<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="71">
+<div class="cell-output cell-output-display" data-execution_count="17">
 <p><img src="index_files/figure-html/cell-18-output-1.png" width="470" height="165"></p>
 </div>
 </div>

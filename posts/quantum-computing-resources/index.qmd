@@ -2,7 +2,7 @@
 title: "Quantum Computing Resources"
 author: "Jonny Comes"
 date: "2022-12-17"
-categories: [quantum, qiskit]
+categories: [quantum, qiskit, resources]
 jupyter: python3
 format:
     html: 
